@@ -72,7 +72,7 @@ export default function StartSetup() {
         <header className="bg-[#003366] text-white sticky top-0 z-50 shadow-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
-              <Link href="/hp-printer-setup" className="flex items-center gap-3 group">
+              <Link href="/hp-printer-setup/" className="flex items-center gap-3 group">
                 <div className="w-10 h-10 rounded-full bg-white text-[#003366] flex items-center justify-center shadow-md font-black text-xl group-hover:scale-105 transition-transform duration-300">
                   HP
                 </div>
@@ -84,7 +84,7 @@ export default function StartSetup() {
 
               {/* Desktop Navigation */}
               <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-                <Link href="/hp-printer-setup" className="text-slate-300 hover:text-white transition-colors duration-200">
+                <Link href="/hp-printer-setup/" className="text-slate-300 hover:text-white transition-colors duration-200">
                   Support Home
                 </Link>
                 <a href="#" className="text-slate-300 hover:text-white transition-colors duration-200">
@@ -124,7 +124,7 @@ export default function StartSetup() {
               >
                 <div className="px-4 py-5 space-y-4 text-base font-medium">
                   <Link
-                    href="/hp-printer-setup"
+                    href="/hp-printer-setup/"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block py-2 px-3 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all"
                   >
@@ -225,7 +225,7 @@ export default function StartSetup() {
 
             {/* Bottom Nav Buttons */}
             <div className="flex justify-between items-center pt-6 border-t border-slate-200 mt-8">
-              <Link href="/hp-printer-setup">
+              <Link href="/hp-printer-setup/">
                 <button className="px-6 py-2.5 border border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-50 font-medium rounded-xl transition-all text-sm flex items-center gap-2 shadow-sm bg-white">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />

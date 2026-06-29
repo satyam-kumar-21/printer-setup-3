@@ -88,14 +88,13 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] font-sans text-slate-800 antialiased selection:bg-[#0096D6]/20 selection:text-[#0063A0]">
-      {/* Top Security Banner */}
 
 
       {/* Brand Header */}
       <header className="bg-[#002244] text-white sticky top-0 z-50 shadow-md transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/hp-printer-setup" className="flex items-center gap-3 group">
+            <Link href="/hp-printer-setup/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[#0096D6] to-[#0063A0] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
                 <svg className="w-5.5 h-5.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
@@ -118,7 +117,7 @@ export default function Page() {
               <a href="#common-issues" className="text-slate-300 hover:text-white transition-colors duration-200">
                 Troubleshooting
               </a>
-              <Link href="/hp-printer-setup/start" className="px-5 py-2 bg-[#0096D6] hover:bg-[#0063A0] text-white font-semibold rounded-lg shadow-md transition-all duration-200 hover:shadow-[#0096D6]/20">
+              <Link href="/hp-printer-setup/start/" className="px-5 py-2 bg-[#0096D6] hover:bg-[#0063A0] text-white font-semibold rounded-lg shadow-md transition-all duration-200 hover:shadow-[#0096D6]/20">
                 Start Setup
               </Link>
             </nav>
@@ -174,7 +173,7 @@ export default function Page() {
                 </a>
                 <div className="pt-2 px-3">
                   <Link
-                    href="/hp-printer-setup/start"
+                    href="/hp-printer-setup/start/"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block text-center py-3 bg-[#0096D6] hover:bg-[#0063A0] text-white font-semibold rounded-lg shadow-md transition-all"
                   >
@@ -212,12 +211,12 @@ export default function Page() {
                 Quickly configure your wireless printer, install necessary software packages, connect to Wi-Fi networks, and resolve driver installation errors seamlessly.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-                <Link href="/hp-printer-setup/start">
+                <Link href="/hp-printer-setup/start/">
                   <button className="w-full sm:w-auto px-10 py-4 bg-[#0096D6] text-white font-semibold rounded-xl shadow-lg hover:bg-[#0082ba] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
                     Start Guided Setup
                   </button>
                 </Link>
-                <Link href="/hp-printer-setup/start">
+                <Link href="/hp-printer-setup/start/">
                   <button className="w-full sm:w-auto px-10 py-4 border-2 border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 hover:border-white/40 active:scale-[0.98] transition-all duration-200">
                     Get Support Assistance
                   </button>
@@ -435,13 +434,13 @@ export default function Page() {
             Initialize our automated guided installation wizard to detect system parameters and deploy drivers correctly.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/hp-printer-setup/start">
+            <Link href="/hp-printer-setup/start/">
               <button className="w-full sm:w-auto px-10 py-4 bg-[#0096D6] text-white font-semibold rounded-xl shadow-lg hover:bg-[#0082ba] transition-all">
                 Run Setup Assistant
               </button>
             </Link>
-            <Link href="/hp-printer-setup/start">
-              <button className="w-full sm:w-auto px-10 py-4 border border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
+            <Link href="/hp-printer-setup/start/">
+              <button className="w-full sm:w-auto px-10 py-4 border-2 border-white/20 text-white font-semibold rounded-xl hover:bg-white/10 transition-all">
                 Get Interactive Help
               </button>
             </Link>
@@ -472,7 +471,7 @@ export default function Page() {
             <div>
               <h4 className="font-semibold text-white mb-4">Support Tools</h4>
               <ul className="space-y-2.5 text-sm">
-                <li><Link href="/hp-printer-setup/start" className="hover:text-white transition-colors">Setup Assistant</Link></li>
+                <li><Link href="/hp-printer-setup/start/" className="hover:text-white transition-colors">Setup Assistant</Link></li>
                 <li><a href="#setup-guide" className="hover:text-white transition-colors">Wi-Fi Connector</a></li>
                 <li><a href="#setup-guide" className="hover:text-white transition-colors">Calibration Guide</a></li>
               </ul>
