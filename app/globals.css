@@ -1,21 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════
+   MODERN LIGHT BLUE & WHITE DESIGN SYSTEM
+   Brand: Smart Printer Blue (#0096D6)
+═══════════════════════════════════════ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #000000;
+  /* Brand Colors */
+  --hp-blue:        #0096D6;
+  --hp-blue-dark:   #0063A0;
+  --hp-blue-light:  #e6f4f9;
+  --hp-navy:        #002244;
+
+  /* Modern Light Background */
+  --bg:             #ffffff;
+  --bg-2:           #f8fafc;
+  --surface:        #ffffff;
+  --surface-2:      #f1f5f9;
+
+  /* Text */
+  --text:           #1e293b;
+  --text-muted:     #475569;
+  --text-dim:       #64748b;
+  --border:         #e2e8f0;
 }
 
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-2); }
+::-webkit-scrollbar-thumb {
+  background: var(--hp-blue);
+  border-radius: 99px;
+}
+
+/* ── Selection ── */
+::selection {
+  background: rgba(0, 150, 214, 0.15);
+  color: var(--hp-blue-dark);
+}
+
+/* ═══════════════════════════════
+   BACKGROUND SYSTEM
+═══════════════════════════════ */
+
+.hp-bg {
+  background:
+    radial-gradient(circle at 10% 10%, rgba(0, 150, 214, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(0, 99, 160, 0.03) 0%, transparent 40%),
+    #ffffff;
+}
+
+/* Subtle dot grid overlay */
+.dot-grid {
+  background-image:
+    radial-gradient(circle, rgba(0, 150, 214, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ═══════════════════════════════
+   GLASS MORPHISM / MODERN CARDS
+═══════════════════════════════ */
+
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.glass-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: #ffffff;
+  border-color: rgba(0, 150, 214, 0.3);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 150, 214, 0.1),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  transform: translateY(-4px);
+}
+
+/* ═══════════════════════════════
+   GRADIENT TEXT
+═══════════════════════════════ */
+
+.hp-gradient-text {
+  background: linear-gradient(135deg, var(--hp-blue-dark) 0%, var(--hp-blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════
+   BUTTONS
+═══════════════════════════════ */
+
+.btn-hp {
+  background: linear-gradient(135deg, var(--hp-blue), var(--hp-blue-dark));
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 150, 214, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+}
+.btn-hp:hover {
+  background: linear-gradient(135deg, #00a8ee, #0076bd);
+  box-shadow: 0 6px 20px rgba(0, 150, 214, 0.45);
+  transform: translateY(-1px);
+}
+.btn-hp:active { transform: scale(0.98); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--hp-blue-dark);
+  font-weight: 600;
+  border-radius: 12px;
+  border: 1.5px solid rgba(0, 150, 214, 0.4);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.btn-outline:hover {
+  background: rgba(0, 150, 214, 0.05);
+  border-color: var(--hp-blue);
+}
+
+/* ═══════════════════════════════
+   ANIMATIONS
+═══════════════════════════════ */
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+.float-anim { animation: float-y 6s ease-in-out infinite; }
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.spin-slow  { animation: spin-slow 25s linear infinite; }
+.spin-rev   { animation: spin-slow 18s linear infinite reverse; }
+
+/* Radial scanner ring */
+@keyframes scanner {
+  0%   { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.scanner-ring {
+  animation: scanner 3s ease-out infinite;
+}
+
+/* ═══════════════════════════════
+   SECTION ACCENTS
+═══════════════════════════════ */
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 99px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hp-blue-dark);
+  background: var(--hp-blue-light);
+  border: 1px solid rgba(0, 150, 214, 0.15);
+}
+
+/* Brand divider */
+.hp-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,150,214,0.15), transparent);
+}
+
+/* Number badge */
+.step-num {
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(0, 150, 214, 0.05);
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════
+   TESTIMONIAL CARD
+═══════════════════════════════ */
+.testimonial-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+.testimonial-card:hover {
+  border-color: rgba(0, 150, 214, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+/* ═══════════════════════════════
+   PROGRESS BAR
+═══════════════════════════════ */
+.hp-progress {
+  height: 6px;
+  border-radius: 99px;
+  background: rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+.hp-progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--hp-blue), var(--hp-blue-dark));
+  transition: width 0.5s ease;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
 }
