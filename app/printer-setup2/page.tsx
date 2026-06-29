@@ -28,7 +28,7 @@ function Stars({ n = 5 }: { n?: number }) {
   return (
     <div className="flex gap-0.5">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} className={`w-4 h-4 ${i < n ? "text-amber-450" : "text-slate-200"}`} fill="currentColor" viewBox="0 0 20 20">
+        <svg key={i} className={`w-4 h-4 ${i < n ? "text-amber-500" : "text-slate-200"}`} fill="currentColor" viewBox="0 0 20 20">
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ))}
@@ -47,7 +47,6 @@ function PrinterIcon() {
 
 export default function Page() {
   const [selectedPrinter, setSelectedPrinter] = useState<{ name: string; content: string } | null>(null);
-  const [activeTab, setActiveTab] = useState(0);
   const [chatOpen, setChatOpen] = useState(false);
   const [expandedIssue, setExpandedIssue] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -107,75 +106,111 @@ export default function Page() {
     : printers;
 
   return (
-    <div className="min-h-screen bg-slate-50 bg-[radial-gradient(#e0f2fe_1.2px,transparent_1.2px)] [background-size:24px_24px] text-slate-800 font-sans antialiased selection:bg-sky-100 flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-slate-50 bg-[radial-gradient(#e0f2fe_1.2px,transparent_1.2px)] [background-size:24px_24px] text-slate-855 font-sans antialiased selection:bg-sky-100 flex flex-col justify-between">
       
-      {/* LEFT COLUMN - FIXED PANEL */}
-      <aside className="w-full lg:w-[420px] bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 text-white shrink-0 p-8 lg:p-12 lg:h-screen lg:sticky lg:top-0 flex flex-col justify-between shadow-2xl z-20">
-        <div className="space-y-8 lg:space-y-12">
-          {/* Logo */}
-          <Link href="/printer-setup2" className="flex items-center gap-3 group self-start">
-            <div className="w-9 h-9 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
-              <PrinterIcon />
-            </div>
-            <span className="text-lg font-bold tracking-tight text-white">PrintAssist</span>
-          </Link>
-
-          {/* Hero Heading */}
-          <div className="space-y-6">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[10px] font-extrabold uppercase tracking-wider">
-              ✨ Simple Setup Portal
-            </span>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
-              Configure Your Printer <br />
-              <span className="text-sky-200">Without Complexity</span>
-            </h1>
-            <p className="text-sky-100 text-xs sm:text-sm leading-relaxed max-w-md">
-              Follow our simple setup guides, browse supported printer models, or troubleshoot connection errors in one simple web utility.
-            </p>
-          </div>
-
-          {/* Action buttons */}
-          <div className="flex flex-col gap-3 pt-2">
-            <Link href="/printer-setup2/start/" className="w-full px-6 py-3.5 bg-white hover:bg-slate-100 text-sky-700 font-bold rounded-xl shadow-lg transition-transform hover:-translate-y-0.5 text-xs text-center">
-              Start Setup
+      <div>
+        {/* HEADER */}
+        <header className="bg-white/80 backdrop-blur-md border-b border-sky-100 sticky top-0 z-50 shadow-sm">
+          <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <Link href="/printer-setup2" className="flex items-center gap-2.5 group">
+              <div className="w-9 h-9 rounded-xl bg-sky-600 flex items-center justify-center text-white shadow-sm shadow-sky-500/20">
+                <PrinterIcon />
+              </div>
+              <span className="text-base font-black text-slate-900 tracking-tight">PrintAssist</span>
             </Link>
-            <button onClick={() => setChatOpen(true)} className="w-full px-6 py-3.5 bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold rounded-xl transition-transform hover:-translate-y-0.5 text-xs text-center">
+
+            <nav className="flex items-center gap-6 text-xs font-bold">
+              <a href="#guides" className="text-slate-500 hover:text-sky-600 transition-colors">Setup Guides</a>
+              <a href="#printers" className="text-slate-500 hover:text-sky-600 transition-colors">Supported Printers</a>
+              <a href="#troubleshoot" className="text-slate-500 hover:text-sky-600 transition-colors">Troubleshoot</a>
+              <Link href="/printer-setup2/start/" className="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl transition-all text-xs font-bold shadow-md shadow-sky-500/10">
+                Start Setup
+              </Link>
+            </nav>
+          </div>
+        </header>
+
+        {/* HERO SECTION - RESTRUCTURED: SaaS-style center layout with radial glow */}
+        <section className="max-w-6xl mx-auto px-6 py-20 lg:py-28 text-center space-y-6 relative overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
+          <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-150 text-[10px] font-extrabold uppercase tracking-wider text-sky-700 relative z-10">
+            ✨ Simple Setup Portal
+          </span>
+          <h1 className="text-4xl sm:text-6xl font-black text-slate-900 leading-tight tracking-tight relative z-10">
+            Configure Your Printer & Drivers <br />
+            <span className="text-sky-600 bg-clip-text">Without The Complexity</span>
+          </h1>
+          <p className="text-slate-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed relative z-10">
+            Follow our simple setup guides below, browse supported printer models, or troubleshoot connection errors in one simple web utility.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4 relative z-10">
+            <Link href="/printer-setup2/start/" className="w-full sm:w-auto px-8 py-4 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg shadow-sky-500/10 transition-transform hover:-translate-y-0.5 text-sm text-center">
+              Start Setup Wizard
+            </Link>
+            <button onClick={() => setChatOpen(true)} className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 font-bold rounded-xl shadow-sm transition-transform hover:-translate-y-0.5 text-sm text-center">
               Chat with Helper
             </button>
           </div>
-        </div>
 
-        {/* Helpline Card */}
-        <div className="mt-8 lg:mt-0 bg-white/10 border border-white/20 rounded-2xl p-5">
-          <span className="text-[9px] font-black text-sky-200 uppercase tracking-widest block mb-1">Toll-Free Helpline</span>
-          <p className="text-xl font-black text-white tracking-wider">+1 (855) 618-4642</p>
-          <p className="text-[9px] text-sky-150 mt-1.5 font-medium">Available 24/7 for Hardware Setup</p>
-        </div>
-      </aside>
+          {/* SaaS Mockup Panel below Hero */}
+          <div className="pt-12 max-w-4xl mx-auto relative z-10">
+            <div className="bg-white border border-sky-100 rounded-3xl p-6 shadow-2xl shadow-sky-950/5 text-left space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-red-400" />
+                  <span className="w-3 h-3 rounded-full bg-yellow-400" />
+                  <span className="w-3 h-3 rounded-full bg-green-400" />
+                </div>
+                <span className="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1 rounded-full flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
+                  System Monitoring Active
+                </span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-slate-50 border border-slate-100 rounded-2xl p-5 space-y-2">
+                  <span className="text-2xl">💻</span>
+                  <h4 className="font-bold text-slate-900 text-xs">Host Connection</h4>
+                  <p className="text-slate-400 text-[10px]">Windows / macOS client active</p>
+                </div>
+                <div className="bg-slate-50 border border-slate-100 rounded-2xl p-5 space-y-2">
+                  <span className="text-2xl">⚙️</span>
+                  <h4 className="font-bold text-slate-900 text-xs">Driver Database</h4>
+                  <p className="text-slate-400 text-[10px]">200+ verified firmware files</p>
+                </div>
+                <div className="bg-slate-50 border border-slate-100 rounded-2xl p-5 space-y-2">
+                  <span className="text-2xl">🖨️</span>
+                  <h4 className="font-bold text-slate-900 text-xs">Printer Hardware</h4>
+                  <p className="text-slate-400 text-[10px]">Status check: Pending setup</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* RIGHT COLUMN - SCROLLABLE WORKSPACE */}
-      <main className="flex-1 p-6 md:p-10 lg:p-12 space-y-12">
-        
-        {/* SECTION 1: SIDE-BY-SIDE OS SETUP GUIDES */}
-        <section id="guides" className="bg-white border border-sky-100 rounded-3xl p-6 sm:p-8 shadow-xl shadow-sky-950/5 space-y-8 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-sky-50/40 rounded-full blur-2xl pointer-events-none" />
-          
-          <div className="border-b border-slate-100 pb-4">
+        {/* SECTION 1: BENTO GRID FEATURES */}
+        <section id="guides" className="max-w-6xl mx-auto px-6 py-12">
+          <div className="text-center mb-16 space-y-2">
             <span className="text-xs uppercase font-extrabold tracking-widest text-sky-600">OS Guidelines</span>
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-1">How to connect your printer</h2>
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight">How to connect your printer</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Windows Column */}
-            <div className="space-y-5">
-              <div className="flex items-center gap-3 border-b border-slate-100 pb-3">
-                <span className="text-xl">🪟</span>
-                <h3 className="font-bold text-slate-900 text-sm">Windows Setup (10 & 11)</h3>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Windows Column - Bento Card (6 cols) */}
+            <div className="lg:col-span-6 bg-white border border-sky-100 rounded-3xl p-6 sm:p-8 shadow-xl shadow-sky-950/5 space-y-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-sky-50/45 rounded-full blur-2xl pointer-events-none" />
+              <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                <span className="text-2xl">🪟</span>
+                <div>
+                  <h3 className="font-bold text-slate-900 text-base">Windows Setup</h3>
+                  <p className="text-slate-455 text-xs">Steps for Windows 10 & 11</p>
+                </div>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {windowsSteps.map((s, idx) => (
                   <div key={idx} className="flex gap-4 items-start group">
-                    <div className="w-7.5 h-7.5 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 group-hover:bg-sky-600 group-hover:text-white transition-colors">{s.n}</div>
+                    <div className="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 group-hover:bg-sky-600 group-hover:text-white transition-colors">{s.n}</div>
                     <div>
                       <h4 className="font-bold text-slate-900 text-xs">{s.title}</h4>
                       <p className="text-slate-500 text-[11px] mt-0.5 leading-relaxed">{s.desc}</p>
@@ -185,16 +220,20 @@ export default function Page() {
               </div>
             </div>
 
-            {/* macOS Column */}
-            <div className="space-y-5">
-              <div className="flex items-center gap-3 border-b border-slate-100 pb-3">
-                <span className="text-xl">🍎</span>
-                <h3 className="font-bold text-slate-900 text-sm">macOS Setup (Apple Mac)</h3>
+            {/* macOS Column - Bento Card (6 cols) */}
+            <div className="lg:col-span-6 bg-white border border-sky-100 rounded-3xl p-6 sm:p-8 shadow-xl shadow-sky-950/5 space-y-6 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-sky-50/45 rounded-full blur-2xl pointer-events-none" />
+              <div className="flex items-center gap-3 border-b border-slate-100 pb-4">
+                <span className="text-2xl">🍎</span>
+                <div>
+                  <h3 className="font-bold text-slate-900 text-base">macOS Setup</h3>
+                  <p className="text-slate-455 text-xs">Steps for Apple Mac systems</p>
+                </div>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-5">
                 {macSteps.map((s, idx) => (
                   <div key={idx} className="flex gap-4 items-start group">
-                    <div className="w-7.5 h-7.5 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 group-hover:bg-sky-600 group-hover:text-white transition-colors">{s.n}</div>
+                    <div className="w-8 h-8 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 group-hover:bg-sky-600 group-hover:text-white transition-colors">{s.n}</div>
                     <div>
                       <h4 className="font-bold text-slate-900 text-xs">{s.title}</h4>
                       <p className="text-slate-500 text-[11px] mt-0.5 leading-relaxed">{s.desc}</p>
@@ -207,72 +246,72 @@ export default function Page() {
         </section>
 
         {/* SECTION 2: SUPPORTED PRINTERS GRID */}
-        <section id="printers" className="bg-white border border-sky-100 rounded-3xl p-6 sm:p-8 shadow-xl shadow-sky-950/5 space-y-8">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-100 pb-4">
-            <div className="space-y-1">
+        <section id="printers" className="max-w-6xl mx-auto px-6 py-12">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+            <div className="space-y-2 text-center sm:text-left">
               <span className="text-xs uppercase font-extrabold tracking-widest text-sky-600">Supported Devices</span>
-              <h2 className="text-2xl font-black text-slate-900 tracking-tight">Active Printer Models</h2>
+              <h2 className="text-3xl font-black text-slate-900 tracking-tight">Active Printer Models</h2>
             </div>
             
-            <div className="relative w-full sm:w-64">
+            <div className="relative w-full sm:w-72">
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search printer models..."
-                className="w-full pl-9 pr-4 py-2.5 rounded-xl text-xs bg-slate-50 border border-sky-150 focus:outline-none focus:border-sky-500 transition-colors"
+                className="w-full pl-9 pr-4 py-2.5 rounded-xl text-xs bg-white border border-sky-150 focus:outline-none focus:border-sky-500 transition-colors shadow-sm"
               />
               <span className="absolute left-3 top-3 text-xs text-slate-400">🔍</span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPrinters.map((p, idx) => (
               <div
                 key={idx}
                 onClick={() => setSelectedPrinter({ name: p.name, content: printerContents[p.name] })}
-                className="p-5 bg-slate-50 border border-slate-150 rounded-2xl flex items-center justify-between cursor-pointer transition-all hover:bg-white hover:border-sky-355 hover:shadow-md group"
+                className="p-6 bg-white border border-sky-100 rounded-3xl flex items-center justify-between cursor-pointer transition-all hover:border-sky-300 hover:shadow-lg hover:shadow-sky-500/5 group"
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl shrink-0 group-hover:scale-110 transition-transform">{p.icon}</span>
+                <div className="flex items-center gap-4">
+                  <span className="text-3xl shrink-0 group-hover:scale-110 transition-transform">{p.icon}</span>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900 group-hover:text-sky-600 transition-colors">{p.name}</h4>
-                    <p className="text-slate-400 text-[10px] mt-0.5">{p.desc}</p>
+                    <h4 className="text-sm font-bold text-slate-900 group-hover:text-sky-600 transition-colors">{p.name}</h4>
+                    <p className="text-slate-400 text-xs mt-0.5">{p.desc}</p>
                   </div>
                 </div>
-                <span className="text-[8px] font-bold bg-white text-slate-400 border border-slate-205 px-2 py-1 rounded-full uppercase shrink-0">{p.tag}</span>
+                <span className="text-[9px] font-bold bg-sky-50 text-sky-700 border border-sky-100 px-2.5 py-1 rounded-full uppercase shrink-0">{p.tag}</span>
               </div>
             ))}
           </div>
         </section>
 
         {/* SECTION 3: COMMON FIXES ACCORDION LIST */}
-        <section id="troubleshoot" className="bg-white border border-sky-100 rounded-3xl p-6 sm:p-8 shadow-xl shadow-sky-950/5 space-y-8">
-          <div className="border-b border-slate-100 pb-4">
+        <section id="troubleshoot" className="max-w-4xl mx-auto px-6 py-12">
+          <div className="text-center mb-12 space-y-2">
             <span className="text-xs uppercase font-extrabold tracking-widest text-red-500">Quick Fixes</span>
-            <h2 className="text-2xl font-black text-slate-900 tracking-tight mt-1">Common Printer Issues</h2>
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight">Common Printer Issues</h2>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {issues.map((issue, idx) => {
               const isExpanded = expandedIssue === idx;
               return (
-                <div key={idx} className="border border-slate-150 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all">
+                <div key={idx} className="bg-white border border-sky-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <div
                     onClick={() => setExpandedIssue(isExpanded ? null : idx)}
-                    className="p-5 flex items-center justify-between cursor-pointer hover:bg-slate-50/50 transition-colors"
+                    className="p-6 flex items-center justify-between cursor-pointer hover:bg-slate-50/50 transition-colors"
                   >
                     <div>
-                      <h4 className="font-bold text-slate-900 text-xs sm:text-sm">{issue.title}</h4>
-                      <p className="text-slate-400 text-[10px] mt-0.5">{issue.desc}</p>
+                      <h4 className="font-bold text-slate-900 text-sm sm:text-base">{issue.title}</h4>
+                      <p className="text-slate-400 text-[11px] mt-0.5">{issue.desc}</p>
                     </div>
-                    <span className={`text-sm font-bold text-sky-600 transition-transform ${isExpanded ? "rotate-45" : ""}`}>+</span>
+                    <span className={`text-lg font-bold text-sky-600 transition-transform ${isExpanded ? "rotate-45" : ""}`}>+</span>
                   </div>
 
                   <AnimatePresence initial={false}>
                     {isExpanded && (
                       <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} className="overflow-hidden bg-slate-50/30">
-                        <div className="px-5 pb-5 pt-2 border-t border-slate-100 text-slate-650 text-xs leading-relaxed font-medium">
+                        <div className="px-6 pb-6 pt-2 border-t border-slate-100 text-slate-600 text-xs leading-relaxed font-medium">
                           {issue.content}
                         </div>
                       </motion.div>
@@ -285,46 +324,107 @@ export default function Page() {
         </section>
 
         {/* SECTION 4: TRUSTED REVIEWS */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, idx) => (
-            <div key={idx} className="bg-white border border-sky-100 rounded-3xl p-6 space-y-6 shadow-sm hover:shadow-md transition-shadow">
-              <p className="text-slate-600 text-xs italic font-medium leading-relaxed">"{t.text}"</p>
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full bg-sky-50 text-sky-700 flex items-center justify-center font-bold text-xs shadow-sm">{t.avatar}</div>
-                <div>
-                  <div className="font-bold text-slate-900 text-xs">{t.name}</div>
-                  <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{t.role}</div>
+        <section className="max-w-6xl mx-auto px-6 py-12">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-black text-slate-900 tracking-tight">Trusted Reviews</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t, idx) => (
+              <div key={idx} className="bg-white border border-sky-100 rounded-3xl p-6 sm:p-8 space-y-6 shadow-sm hover:shadow-md transition-shadow">
+                <p className="text-slate-650 text-xs italic font-medium leading-relaxed">"{t.text}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-sky-50 text-sky-700 flex items-center justify-center font-bold text-xs shadow-sm">{t.avatar}</div>
+                  <div>
+                    <div className="font-bold text-slate-900 text-xs">{t.name}</div>
+                    <div className="text-[9px] font-bold text-slate-400 uppercase tracking-widest">{t.role}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </section>
-
-        {/* SECTION 5: QUICK STATS */}
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center" ref={statsRef}>
-          {[
-            { val: c1.toLocaleString() + "+", label: "Printers Set Up" },
-            { val: c2 + "%", label: "Success Rate" },
-            { val: "24/7", label: "Helper Availability" },
-            { val: "4.9 ★", label: "User Rating" }
-          ].map((stat, i) => (
-            <div key={i} className="bg-white border border-sky-150 rounded-2xl p-5 shadow-sm">
-              <p className="text-lg sm:text-xl font-black text-slate-900">{stat.val}</p>
-              <p className="text-[9px] uppercase font-bold text-slate-400 mt-1">{stat.label}</p>
-            </div>
-          ))}
-        </section>
-
-        {/* FOOTER */}
-        <footer className="border-t border-sky-150 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-          <p>&copy; 2026 PrintAssist Portal. All rights reserved. Helpline: +1 (855) 618-4642</p>
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-slate-650 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-slate-655 transition-colors">Terms of Service</a>
+            ))}
           </div>
-        </footer>
+        </section>
 
-      </main>
+        {/* SECTION 5: STATS STRIP & HELPLINE */}
+        <section className="max-w-5xl mx-auto px-6 pb-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center" ref={statsRef}>
+            {[
+              { val: c1.toLocaleString() + "+", label: "Printers Set Up" },
+              { val: c2 + "%", label: "Success Rate" },
+              { val: "24/7", label: "Helper Availability" },
+              { val: "4.9 ★", label: "User Rating" }
+            ].map((stat, i) => (
+              <div key={i} className="bg-white border border-sky-100/60 rounded-2xl p-5 shadow-sm hover:border-sky-200 transition-colors">
+                <p className="text-xl sm:text-2xl font-black text-slate-900">{stat.val}</p>
+                <p className="text-[9px] uppercase font-bold text-slate-400 mt-1">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Helpline Alert Panel */}
+          <div className="mt-8 rounded-3xl p-6 sm:p-8 bg-sky-600 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg shadow-sky-600/10">
+            <div className="space-y-1 text-center md:text-left">
+              <h3 className="font-bold text-lg">Still need help setting up?</h3>
+              <p className="text-sky-100 text-xs">Call our helpline to set up your printer drivers easily.</p>
+            </div>
+            <div className="flex items-center gap-4 shrink-0">
+              <div className="text-right hidden sm:block">
+                <span className="text-[9px] uppercase tracking-widest text-sky-200 block">Toll-Free Helpline</span>
+                <span className="text-lg font-black tracking-wider">+1 (855) 618-4642</span>
+              </div>
+              <a href="tel:+18556184642" className="px-6 py-3 bg-white hover:bg-sky-50 text-sky-600 font-bold rounded-full transition-all text-xs shadow-sm">
+                Call Helpline
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* FOOTER */}
+      <footer className="bg-slate-900 pt-16 pb-8 text-slate-400 text-xs px-6 border-t border-slate-800">
+        <div className="max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div>
+              <div className="flex items-center gap-2.5 mb-4">
+                <span className="w-8.5 h-8.5 rounded-xl bg-sky-600 flex items-center justify-center text-white"><PrinterIcon /></span>
+                <span className="text-base font-bold text-white">PrintAssist</span>
+              </div>
+              <p className="text-slate-400 leading-relaxed">
+                Troubleshooting and setup helpers to synchronize your printer drivers easily.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4 uppercase tracking-wider text-[10px]">Links</h4>
+              <ul className="space-y-2 font-semibold">
+                <li><a href="#guides" className="hover:text-white transition-colors">Setup Guides</a></li>
+                <li><a href="#printers" className="hover:text-white transition-colors">Printers List</a></li>
+                <li><a href="#troubleshoot" className="hover:text-white transition-colors">Troubleshoot</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-white mb-4 uppercase tracking-wider text-[10px]">Direct Helpline</h4>
+              <ul className="space-y-2 font-semibold">
+                <li className="text-white font-bold flex items-center gap-1">
+                  <span>📞</span> +1 (855) 618-4642
+                </li>
+                <li>
+                  <button onClick={() => setChatOpen(true)} className="hover:text-white transition-colors">
+                    💬 Support Chat
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-semibold text-slate-500">
+            <p>&copy; 2026 PrintAssist Portal. All rights reserved.</p>
+            <div className="flex gap-4">
+              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </footer>
 
       {/* MODALS */}
       <Modal isOpen={!!selectedPrinter} onClose={() => setSelectedPrinter(null)} title={selectedPrinter?.name || ""} content={selectedPrinter?.content || ""} />

@@ -242,6 +242,12 @@ body {
   transition: width 0.5s ease;
 }
 
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
 @layer utilities {
   .text-balance { text-wrap: balance; }
+  .animate-shimmer { animation: shimmer 1.8s ease-in-out infinite; }
 }
