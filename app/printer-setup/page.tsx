@@ -223,12 +223,12 @@ export default function Page() {
 
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-4 mb-2">
-        <nav className="text-xs font-semibold text-slate-500 flex items-center flex-wrap gap-3">
-          <span className="hover:text-slate-800 cursor-pointer transition-colors">Support Portal</span>
-          <svg className="w-3 h-3 text-slate-400 mx-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
-          <span className="hover:text-slate-800 cursor-pointer transition-colors">Hardware Diagnostics</span>
-          <svg className="w-3 h-3 text-slate-400 mx-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
-          <span className="text-[#0096D6]">Printer Setup Guide</span>
+        <nav className="text-[10px] sm:text-xs font-semibold text-slate-500 flex items-center flex-nowrap whitespace-nowrap overflow-x-auto gap-1.5 sm:gap-3 pb-1">
+          <span className="hover:text-slate-800 cursor-pointer transition-colors shrink-0">Support Portal</span>
+          <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-400 mx-0.5 sm:mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+          <span className="hover:text-slate-800 cursor-pointer transition-colors shrink-0">Hardware Diagnostics</span>
+          <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-400 mx-0.5 sm:mx-1 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+          <span className="text-[#0096D6] shrink-0">Printer Setup Guide</span>
         </nav>
       </div>
 
